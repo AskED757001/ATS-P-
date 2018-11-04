@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\ats_define.hpp">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dllmain.hpp">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utility.hpp">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ats.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ATSIni.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ATS-P.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\EB.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MT.h">
+      <Filter>main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\dllmain.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exports.def">
+      <Filter>main</Filter>
+    </None>
+  </ItemGroup>
+</Project>
