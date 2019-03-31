@@ -285,13 +285,9 @@ bool PWarning(double distance, double speed, int Limit, int ReleaseSpeed, double
 	double Pattern = (speed * speed - Limit * Limit) / 7.2 / decelerate + Margin;
 
 	if (distance - 50 < Pattern && speed > ReleaseSpeed && distance != 0)
-	{
 		Warning = true;
-	}
 	else
-	{
 		Warning = false;
-	}
 	return Warning;
 }
 void PBeacon(int Type, int Signal, double distance, int Optional)
@@ -318,9 +314,7 @@ void PBeacon(int Type, int Signal, double distance, int Optional)
 			P.BeaconNumber = Optional;
 		}
 		else if (Optional == 9 && P.PatternSig == 0)
-		{
 			P.BeaconNumber = Optional;
-		}
 		if (Optional != 0)
 			P.WestPattern = true;
 		else

@@ -154,9 +154,11 @@ ATS_HANDLES WINAPI atsElapse(ATS_VEHICLESTATE vs, int *p_panel, int *p_sound)
 		p_panel[3] = P.WarningLamp;
 		p_panel[4] = P.ATSCutLamp;
 		p_panel[5] = P.BrakeLamp;
-		if (P.ATSData > 0)
-			p_panel[6] = P.ATSData;
-		else if (P.ATSPattern)
+		if (P.ATSData == 1)
+			p_panel[6] = 1;
+		else if (P.ATSData == 2 && g_ini.DATA.West == 1 || P.ATSData == 2 && g_ini.DATA.West == 2 && P.WestPattern)
+			p_panel[6] = 2;
+		else if (P.ATSPattern && g_ini.DATA.West == 1 || P.ATSPattern && g_ini.DATA.West == 2 && P.WestPattern)
 			p_panel[6] = 2;
 		else
 			p_panel[6] = 0;
@@ -299,14 +301,23 @@ void WINAPI atsSetBeaconData(ATS_BEACONDATA beacon_data)
 		Sndistance = beacon_data.Optional;
 	if (beacon_data.Type == 25 && speed != 0)
 	{
-		P.ATSData = beacon_data.Optional;
-		if (P.ATSData == 0 && P.PatternSig != 0)
-			Sndistance = -1;
-		else if (P.ATSData == 2 && P.PatternSig != 0)
-			P.PatternSig = 0;
-		else if (P.ATSData == 5)
+		if (beacon_data.Optional == 0)
+		{
+			P.ATSData = beacon_data.Optional;
+			if (P.PatternSig != 0)
+				Sndistance = -1;
+		}
+		else if (beacon_data.Optional == 1)
+			P.ATSData = beacon_data.Optional;
+		else if (beacon_data.Optional == 2)
+		{
+			P.ATSData = beacon_data.Optional;
+			if (P.PatternSig != 0)
+				P.PatternSig = 0;
+		}
+		else if (beacon_data.Optional == 5)
 			P.WestPattern = true;
-		else if (P.ATSData == 6)
+		else if (beacon_data.Optional == 6)
 			P.WestPattern = false;
 	}
 }
