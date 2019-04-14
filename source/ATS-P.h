@@ -130,13 +130,15 @@ void PRun(double deltaL)
 		P.SignalWarning = -5;
 	else if (g_ini.DATA.West == 1 || g_ini.DATA.West == 2 && P.WestPattern)
 		P.SignalWarning = 5;
-	if (PWarning(P.PatternSig, speed, 0, P.SignalWarning, g_ini.DATA.Pdecelerate, g_ini.DATA.Margin)
+	if (P.PatternRed > 0 && speed > 10
+		|| g_ini.DATA.PMaxspeed - 5 < speed
+		|| PWarning(P.PatternSig, speed, 0, P.SignalWarning, g_ini.DATA.Pdecelerate, g_ini.DATA.Margin)
 		|| PWarning(P.PatternLim1, speed, P.PatternSpeed1, P.PatternSpeed1 - 5, g_ini.DATA.Pdecelerate, 0)
 		|| PWarning(P.PatternLim2, speed, P.PatternSpeed2, P.PatternSpeed2 - 5, g_ini.DATA.Pdecelerate, 0)
 		|| PWarning(P.PatternLim3, speed, P.PatternSpeed3, P.PatternSpeed3 - 5, g_ini.DATA.Pdecelerate, 0)
 		|| PWarning(P.PatternLim4, speed, P.PatternSpeed4, P.PatternSpeed4 - 5, g_ini.DATA.Pdecelerate, 0)
 		|| PWarning(P.PatternLim5, speed, P.PatternSpeed5, P.PatternSpeed5 - 5, g_ini.DATA.Pdecelerate, 0)
-		|| P.PatternRed > 0 && speed > 10 || g_ini.DATA.PMaxspeed - 5 < speed)
+		)
 	{
 		if(!P.WarningLamp)
 		{
